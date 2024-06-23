@@ -35,7 +35,7 @@ result = r.json()
 ###########################################################################
 from pyqgis_scripting_ext.core import*
 HMap.remove_layers_by_name(["OpenStreetMap", "Battles","countriesLayer3857",citiesName, countriesName, "rivers_italy"])
-folder="C:/Users/marti/Desktop/advanced geomatics/github/"
+folder="C:/Users/marti/Desktop/advanced geomatics/github/my_full_of_testosterone_repo/"
 data_folder=folder+"data/"
 output_folder=folder+"tmp/"
 geopackage_path=data_folder+"reduced_ne.gpkg"
