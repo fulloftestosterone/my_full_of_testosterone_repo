@@ -40,8 +40,10 @@ data_folder=folder+"data/"
 output_folder=folder+"tmp/"
 geopackage_path=data_folder+"reduced_ne.gpkg"
 countriesName = 'ne_50m_admin_0_countries'
-countriesLayer=HVectorLayer.open(geopackage_path, countriesName)
 
+
+countriesLayer=HVectorLayer.open(geopackage_path, countriesName)
+countriesLayer.subset_filter("NAME='Italy' OR NAME='Germany'")
 crsHelper=HCrs()
 crsHelper.from_srid(4326)
 crsHelper.to_srid(3857)
@@ -54,7 +56,7 @@ for feature in countriesFeatures:
     countryGeometry = feature.geometry
     geometry=crsHelper.transform(countryGeometry)
     countriesLayer3857.add_feature(geometry,[countryName])
-countriesLayer3857.subset_filter("NAME='Italy' OR NAME='Germany'")
+# countriesLayer3857.subset_filter("NAME='Italy' OR NAME='Germany'")
 
 
 
@@ -78,14 +80,8 @@ BattlesLayer = HVectorLayer.new('Battles', 'Point', 'EPSG:3857', fields)
 counter_italy1 = 0
 counter_germany1 = 0
 
-counter_italy2 = 0
-counter_germany2 = 0
-
-counter_italy3 = 0
-counter_germany3 = 0
-
 for item in features:
-    label=item.get("label").get("value")
+    label=item["label"]["value"]
     coord=item.get("coord").get("value").strip(")").strip("Point(").split(" ")
     subj=item.get("subj").get("value")
     if "year" in item:
