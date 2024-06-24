@@ -180,8 +180,9 @@ printer.add_map(**map_properties)
 
 Scalebar_Properties={
         "x":5,
-        "y":5,
-        "style":"Single Box"
+        "y":190,
+        "style":"Double Box",
+        "unit_per_segment":500
 }
 
 printer.add_scalebar(**Scalebar_Properties)
